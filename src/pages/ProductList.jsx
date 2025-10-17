@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllProduct } from "../services/productServices";
 import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
+
 import { useNavigate } from "react-router-dom";
 
 export default function ProductList({ products: propsProducts }) {
