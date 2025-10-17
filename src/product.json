@@ -1,0 +1,30 @@
+[
+  {
+  "id": 1,
+  "category": "Electronics",
+  "name": "Wireless Earbuds",
+  "price": 1999,
+  "description": "High-quality wireless earbuds with noise cancellation.",
+  "image": "https://example.com/images/earbuds.jpg",
+  "stock": 10
+},
+
+  {
+    "id": 2,
+    "category": "Clothes",
+    "name": "Men's Casual Shirt",
+    "price": 799,
+    "description": "100% cotton casual shirt, perfect for daily wear.",
+    "image": "https://example.com/images/shirt.jpg",
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "category": "Books",
+    "name": "JavaScript for Beginners",
+    "price": 499,
+    "description": "A complete guide to learn JavaScript from scratch.",
+    "image": "https://media.istockphoto.com/id/628925698/vector/pile-of-hardcover-books.jpg?s=612x612&w=0&k=20&c=UskxzCZAQ4LXrgMhgW3M8Q5jdtWFPZ8WxwosF6h6euI=",
+    "stock": 20
+  }
+]
