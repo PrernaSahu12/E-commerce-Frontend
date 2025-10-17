@@ -59,6 +59,8 @@ export const createOrderCOD = async (orderData) => {
 // Create Online order (Razorpay)
 export const createOnlineOrder = async (orderData) => {
   try {
+    console.debug("createOnlineOrder called", orderData);
+
     const token = localStorage.getItem("token");
     if (!token) throw new Error("No token found. Please log in first.");
 

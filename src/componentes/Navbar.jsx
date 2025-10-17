@@ -1,6 +1,11 @@
 import { ShoppingCart, Home, PackageSearch } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
+<<<<<<< HEAD
 import { CartContext } from "../context/CartContext";import { Link, useNavigate } from "react-router-dom";
+=======
+import { CartContext } from "../context/CartContext";
+import { Link, useNavigate } from "react-router-dom";
+>>>>>>> af32f1edbaa18b757455dbcfb17507bdd5731ee4
 import API from "../services/api";
 
 export default function Navbar() {
@@ -13,7 +18,11 @@ export default function Navbar() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
+<<<<<<< HEAD
           
+=======
+          // User not logged in
+>>>>>>> af32f1edbaa18b757455dbcfb17507bdd5731ee4
           setUser(null);
           return;
         }
@@ -40,6 +49,7 @@ export default function Navbar() {
   };
 
   return (
+<<<<<<< HEAD
     <nav className="flex justify-between items-center p-4 bg-black text-white shadow-md">
      
       <Link to="/" className="text-2xl font-bold hover:text-gray-200">
@@ -47,6 +57,15 @@ export default function Navbar() {
       </Link>
 
      
+=======
+    <nav className="flex justify-between items-center p-4 bg-blue-600 text-white shadow-md">
+      {/* Logo */}
+      <Link to="/" className="text-2xl font-bold hover:text-gray-200">
+        MyShop
+      </Link>
+
+      {/* Navigation Links */}
+>>>>>>> af32f1edbaa18b757455dbcfb17507bdd5731ee4
       <div className="flex items-center gap-6">
         <Link to="/" className="flex items-center gap-1 hover:text-gray-200 transition">
           <Home size={20} /> Home
@@ -68,7 +87,11 @@ export default function Navbar() {
           )}
         </Link>
 
+<<<<<<< HEAD
        
+=======
+        {/* Right Side: User info or Login/Signup */}
+>>>>>>> af32f1edbaa18b757455dbcfb17507bdd5731ee4
         {user ? (
           <div className="flex items-center gap-4">
             <span className="font-semibold"> {user.name}</span>
