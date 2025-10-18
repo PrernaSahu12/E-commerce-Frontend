@@ -47,7 +47,7 @@ function ProductDetail() {
   <div className="flex flex-col md:flex-row gap-8">
     <img
       className="w-full md:w-1/2 rounded-lg shadow-lg"
-      src={product.images.length > 0 ? `http://localhost:3000${product.images[0].url}` : "/fallback-image.jpg"}
+      src={product.images.length > 0 ? `https://e-commerce-backend-2-cuuu.onrender.com${product.images[0].url}` : "/fallback-image.jpg"}
       alt={product.name}
     />
     <div className="flex-1">

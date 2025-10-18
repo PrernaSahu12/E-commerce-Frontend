@@ -1,7 +1,10 @@
 import axios from "axios";
 
+
+const apiUrl = import.meta.env.VITE_BACKEND_URL||"https://e-commerce-backend-2-cuuu.onrender.com/api";
+
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + "/api",
+  baseURL: apiUrl,
   headers: {
     "Content-Type": "application/json",
   },

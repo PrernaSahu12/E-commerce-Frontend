@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProductList({ products: propsProducts }) {
   const [products, setProducts] = useState(propsProducts || []);
-  const [loading, setLoading] = useState(!propsProducts || propsProducts.length === 0);
+  const [loading, setLoading] = useState(
+    !propsProducts || propsProducts.length === 0
+  );
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("");
@@ -26,6 +28,7 @@ export default function ProductList({ products: propsProducts }) {
       try {
         const data = await getAllProduct();
         setProducts(data || []);
+        console.log(data);
       } catch (err) {
         console.error("Error fetching products:", err);
       } finally {
@@ -35,7 +38,8 @@ export default function ProductList({ products: propsProducts }) {
     fetchProducts();
   }, []);
 
-  if (loading) return <p className="text-center mt-10 text-white">Loading...</p>;
+  if (loading)
+    return <p className="text-center mt-10 text-white">Loading...</p>;
   if (!products || products.length === 0)
     return <p className="text-center mt-10 text-white">No Products</p>;
 
@@ -63,7 +67,6 @@ export default function ProductList({ products: propsProducts }) {
         🛍️ All Products
       </h1>
 
-      
       <div className="flex flex-col sm:flex-row justify-between mb-6 gap-4">
         <select
           value={category}
@@ -95,7 +98,6 @@ export default function ProductList({ products: propsProducts }) {
         />
       </div>
 
-    
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {displayedProducts.map((product) => (
           <div
@@ -105,13 +107,15 @@ export default function ProductList({ products: propsProducts }) {
             <img
               src={
                 product.images.length > 0
-                  ? `http://localhost:3000${product.images[0].url}`
+                  ? `https://e-commerce-backend-2-cuuu.onrender.com${product.images[0].url}`
                   : "/fallback-image.jpg"
               }
               alt={product.name}
               className="w-full h-48 object-cover rounded-xl border border-gray-700"
             />
-            <h2 className="text-lg font-semibold mt-3 text-white">{product.name}</h2>
+            <h2 className="text-lg font-semibold mt-3 text-white">
+              {product.name}
+            </h2>
             <p className="text-green-400 font-medium">₹{product.price}</p>
 
             <div className="flex gap-2 mt-4">
