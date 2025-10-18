@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const apiUrl = import.meta.env.VITE_BACKEND_URL||"https://e-commerce-backend-2-cuuu.onrender.com/api";
+const apiUrl = import.meta.env.VITE_BACKEND_URL||"https://e-commerce-backend-2-cuuu.onrender.com";
 
 const API = axios.create({
   baseURL: apiUrl,
