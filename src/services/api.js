@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const apiUrl = "https://e-commerce-backend-2-cuuu.onrender.com";
+const apiUrl = "https://e-commerce-backend-2-cuuu.onrender.com/api";
 
 const API = axios.create({
   baseURL: apiUrl,
