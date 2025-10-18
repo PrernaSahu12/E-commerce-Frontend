@@ -25,6 +25,7 @@ const CreateProductForm = () => {
     e.preventDefault();
     setLoading(true);
 
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("description", formData.description);
