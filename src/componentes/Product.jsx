@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import productsData from "../products.json"; 
+import productsData from "../products.json";
 
 const Product = () => {
   const [products, setProducts] = useState(productsData);
@@ -25,16 +25,18 @@ const Product = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Our Products</h1>
+    <div className="p-4 bg-black min-h-screen text-white">
+      <h1 className="text-3xl font-bold mb-6 text-center">🛒 Our Products</h1>
 
-     
-      <div className="flex gap-4 mb-4">
+      {/* Category Filter */}
+      <div className="flex flex-wrap gap-3 mb-6 justify-center">
         {["All", "Electronics", "Clothes", "Books"].map((cat) => (
           <button
             key={cat}
-            className={`px-4 py-2 rounded ${
-              selectedCategory === cat ? "bg-blue-600 text-white" : "bg-gray-200"
+            className={`px-4 py-2 rounded-xl transition ${
+              selectedCategory === cat
+                ? "bg-blue-600 text-white"
+                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
             }`}
             onClick={() => setSelectedCategory(cat)}
           >
@@ -43,75 +45,43 @@ const Product = () => {
         ))}
       </div>
 
-      
-      <div className="border p-4 rounded mb-6">
-        <h2 className="text-xl font-bold mb-2">Add New Product</h2>
-        <input
-          type="text"
-          placeholder="Category"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.category}
-          onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.name}
-          onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.price}
-          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.description}
-          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.image}
-          onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Stock"
-          className="border p-2 mb-2 w-full"
-          value={newProduct.stock}
-          onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
-        />
+      {/* Add New Product Form */}
+      <div className="bg-gray-900 border border-gray-700 p-4 rounded-2xl mb-6 max-w-xl mx-auto">
+        <h2 className="text-xl font-bold mb-4">Add New Product</h2>
+        {["category","name","price","description","image","stock"].map((field) => (
+          <input
+            key={field}
+            type={field === "price" || field === "stock" ? "number" : "text"}
+            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+            className="w-full p-2 mb-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            value={newProduct[field]}
+            onChange={(e) => setNewProduct({ ...newProduct, [field]: e.target.value })}
+          />
+        ))}
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="w-full bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
           onClick={handleAddProduct}
         >
           Add Product
         </button>
       </div>
 
-     
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="border p-4 rounded shadow hover:shadow-lg transition"
+            className="bg-gray-900 border border-gray-700 rounded-2xl shadow-lg p-4 hover:shadow-gray-700 hover:scale-[1.02] transition-transform duration-300"
           >
             <img
-              src={product.image}
+              src={product.image || "/fallback-image.jpg"}
               alt={product.name}
-              className="w-full h-48 object-cover rounded"
+              className="w-full h-48 sm:h-56 object-cover rounded-xl border border-gray-700"
             />
-            <h2 className="text-lg font-bold mt-2">{product.name}</h2>
-            <p className="text-gray-600">{product.description}</p>
-            <p className="text-blue-600 font-semibold mt-1">₹{product.price}</p>
-            <p className="text-sm text-gray-500">Stock: {product.stock}</p>
+            <h2 className="text-lg font-semibold mt-3 truncate">{product.name}</h2>
+            <p className="text-gray-400 mt-1">{product.description}</p>
+            <p className="text-green-400 font-medium mt-1">₹{product.price}</p>
+            <p className="text-sm text-gray-500 mt-1">Stock: {product.stock}</p>
           </div>
         ))}
       </div>

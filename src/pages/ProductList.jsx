@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllProduct } from "../services/productServices";
 import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
-
 import { useNavigate } from "react-router-dom";
 
 export default function ProductList({ products: propsProducts }) {
   const [products, setProducts] = useState(propsProducts || []);
-  const [loading, setLoading] = useState(
-    !propsProducts || propsProducts.length === 0
-  );
+  const [loading, setLoading] = useState(!propsProducts || propsProducts.length === 0);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("");
@@ -36,7 +33,7 @@ export default function ProductList({ products: propsProducts }) {
       }
     };
     fetchProducts();
-  }, []);
+  }, [propsProducts]);
 
   if (loading)
     return <p className="text-center mt-10 text-white">Loading...</p>;
@@ -55,18 +52,14 @@ export default function ProductList({ products: propsProducts }) {
     p.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (sort === "price-asc") {
-    displayedProducts.sort((a, b) => a.price - b.price);
-  } else if (sort === "price-desc") {
-    displayedProducts.sort((a, b) => b.price - a.price);
-  }
+  if (sort === "price-asc") displayedProducts.sort((a, b) => a.price - b.price);
+  else if (sort === "price-desc") displayedProducts.sort((a, b) => b.price - a.price);
 
   return (
     <div className="p-6 bg-black text-white min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-white">
-        🛍️ All Products
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">🛍️ All Products</h1>
 
+      {/* Filters */}
       <div className="flex flex-col sm:flex-row justify-between mb-6 gap-4">
         <select
           value={category}
@@ -98,11 +91,12 @@ export default function ProductList({ products: propsProducts }) {
         />
       </div>
 
+      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {displayedProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-gray-900 border border-gray-700 rounded-2xl shadow-lg p-4 hover:shadow-gray-700 hover:scale-[1.02] transition-all duration-300"
+            className="bg-gray-900 border border-gray-700 rounded-2xl shadow-lg p-4 hover:shadow-gray-700 hover:scale-[1.02] transition-transform duration-300"
           >
             <img
               src={
@@ -111,14 +105,12 @@ export default function ProductList({ products: propsProducts }) {
                   : "/fallback-image.jpg"
               }
               alt={product.name}
-              className="w-full h-48 object-cover rounded-xl border border-gray-700"
+              className="w-full h-48 sm:h-56 md:h-48 object-cover rounded-xl border border-gray-700"
             />
-            <h2 className="text-lg font-semibold mt-3 text-white">
-              {product.name}
-            </h2>
+            <h2 className="text-lg font-semibold mt-3 text-white truncate">{product.name}</h2>
             <p className="text-green-400 font-medium">₹{product.price}</p>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-col sm:flex-row gap-2 mt-4">
               <button
                 onClick={() => {
                   addToCart(product);
